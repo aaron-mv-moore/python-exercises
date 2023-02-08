@@ -108,7 +108,7 @@ for n in int_list:
 
 # Write a program that prompts the user for a positive integer. Next write a loop that prints out the numbers from the number the user entered down to 1.
 
-pos_int = int(input('Please enter a whole number greater than 0'))
+pos_int = int(input('Please enter a whole number greater than 0: \n'))
 
 while pos_int > -1:
     print(pos_int)
@@ -120,7 +120,7 @@ while pos_int > -1:
 # #### The input function can be used to prompt for input and use that input in your python code. Prompt the user to enter a positive number and write a loop that counts from 0 to that number. (Hints: note that the input function returns a string, so you'll need to convert this to a numeric type.)
 
 counter = 0 
-pos_number = int(input('Please enter a positive number'))
+pos_number = int(input('Please enter a positive number: \n'))
 while pos_number: 
     print(counter)
     counter += 1
@@ -132,23 +132,23 @@ while pos_number:
 
 # #### Prompt the user for an odd number between 1 and 50. Use a loop and a break statement to continue prompting the user if they enter invalid input. (Hint: use the isdigit method on strings to determine this). Use a loop and the continue statement to output all the odd numbers between 1 and 50, except for the number the user entered.
 
+# Loop and break
 numbers = list(range(51))
 odd_numbers = [number for number in numbers if number % 2 == 1]
-print(valid_answers)
 while True:
     q = input('Please enter an odd number from 1 to 50: ')
     if q.isdigit():
         q = int(q)
-        if q < 51 and q > 0:
-            break
+    if q % 2 == 0:
+        continue
+    elif q < 51 and q > 0:
+        break        
 
 for i in odd_numbers:
     if i != q:
         print(f'Here is an odd number: {i}')
     else:
         print(f'Yikes! Skipping Number: {i}')
-
-
 # ### Fizzbuzz
 # One of the most common interview questions for entry-level programmers is the FizzBuzz test. Developed by Imran Ghory, the test is designed to test basic looping and conditional logic skills.
 # Write a program that prints the numbers from 1 to 100
@@ -198,19 +198,17 @@ for number in numbers:
 #  Only continue if the user agrees to
 
 from prettytable import PrettyTable
-enter = int(input('What number would you like to go up to? '))
-# from prettytable import PrettyTable
-# t = PrettyTable(['Name', 'Age'])
-# t.add_row(['Alice', 24])
-# t.add_row(['Bob', 19])
-# print(t)
-
-t = PrettyTable(['number', 'squared', 'cubed'])
-for i in range(enter + 1):
-    if i == 0:
-        continue
-    t.add_row([i, i ** 2, i**3])
-print(t)
+while True:
+    t = PrettyTable(['number', 'squared', 'cubed'])
+    enter = int(input('What number would you like to go up to? '))
+    for i in range(enter + 1):
+        if i == 0:
+            continue
+        t.add_row([i, i ** 2, i**3])
+    print(t)
+    cont = input('Would you like to continue? Type \'y\' or \'n\' and press enter')
+    if cont.lower() == 'n':
+        break
 
 
 # ### Convert given number grades into letter grades.
