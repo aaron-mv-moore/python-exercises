@@ -2,7 +2,7 @@
 
 # 1. Define a function named is_two. It should accept one input and return True if the passed input is either the number or the string 2, False otherwise
 # This function will determine if the input is the number 2. The input must be an integer
-is_two = lambda x: x == 2
+is_two = lambda x: x == 2 or x == '2' # edit: forgot to accept strings
 
 # The following two lines are to test the function
 is_two(3)
@@ -10,12 +10,14 @@ is_two(2)
 
 # 2. Define a function named is_vowel. It should return True if the passed string is a vowel, False otherwise.
 # this function will allow us to see if the string passed is a vowel. The string should be a single character and is not case sensitive 
-is_vowel = lambda x: x.lower() in 'aeiou'
+# added more conditions to ensure user input does not break code
+is_vowel = lambda x: x.lower() in 'aeiou' if type(x) == str and len(x) == 1 else False
 is_vowel('A')
 
 # 3. Define a function named is_consonant. It should return True if the passed string is a consonant, False otherwise. Use your is_vowel function to accomplish this.
-# this function is being created to detect consonants. .lower() allows the input to not be case sensitive. 'not in' is used to reduce the amount of 
-is_consonant = lambda x: x.lower() not in 'aeiou'
+# this function is being created to detect consonants. .lower() allows the input to not be case sensitive. 
+# edited to include more conditions to make the function more robust
+is_consonant = lambda x: x.lower() not in 'aeiou' if type(x) == str and len(x) == 1 and x.isalpha() == True else False
 # Testing the funtion
 is_consonant('X')
 x = 'eat'
@@ -23,7 +25,6 @@ is_consonant(x[0])
 
 # 4. Define a function that accepts a string that is a word. The function should capitalize the first letter of the word if the word starts with a consonant.
 
-is_consonant = lambda x: x.lower() not in 'aeiou'
 capital_consonant = lambda x: x.capitalize() if is_consonant(x[0]) else f"{x} starts with a vowel"
 capital_consonant('ead')
 
@@ -71,7 +72,6 @@ def handle_commas(x = None):
     return int(x)
 # testing the function
 handle_commas('123,0')
-handle_commas()
 
 # 8. Define a function named get_letter_grade. It should accept a number and return the letter grade associated with that number (A-F).
 
@@ -112,8 +112,24 @@ def remove_vowels(x):
             x = x.replace(char, '')
     # after each character replaced or ignored, the edited string is returned
     return x
-
 remove_vowels('chicken')
+
+# another solution
+def remove_vowels2(x):
+    new_x = ''
+    for char in x:
+        if is_vowel(char):
+            continue
+        else:
+            new_x += char
+    return new_x
+remove_vowels2('chicken')
+
+# another solution
+def remove_vowels3(x):
+    new_x = [char for char in x if is_vowel(char) == False]
+    return ''.join(new_x)
+remove_vowels3('chicken')
 
 # 10. Define a function named normalize_name. It should accept a string and return a valid python identifier, that is:
     # anything that is not a valid python identifier should be removed
@@ -161,7 +177,6 @@ def cumulative_sum(ls):
     # finally, the list will be pushed to the user
     return ls1
 
-print(cumulative_sum(list1))
     
 def cumulative_sum1(ls):
     '''
