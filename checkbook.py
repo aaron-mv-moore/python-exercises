@@ -161,9 +161,10 @@ def transaction_history():
     with open('checkbook.csv', 'r') as f:
         contents = csv.DictReader(f, fieldnames=fields)
         lines = [line for line in contents][1:]
-    print('Below is your transaction history\n')
+    print('\nBelow is your transaction history:')
     for line in lines:
         print(line)
+    print()
     return     
 
 def goodbye():
@@ -183,17 +184,18 @@ def terminal_checkbook():
         choice = input('Your choice? ')
         # adding controls in case someone enters an invalid 
         if choice.isdigit() == False:
-            print('Please enter a number')
+            print('Please enter a number.\n')
             continue
         elif choice.isdigit():
             choice = int(choice)
-        if choice > 4 or choice < 1:
-            print('Invalid choice: ', choice, '\n')
+        if choice > 5 or choice < 1:
+            print(f'{choice} is an invalid choice.\n')
         elif choice == 1:
             # allows a user to view their last balance
             view_balance()
-            cont = input('Would you like to continue? Enter \'y\' or \'n\' \n')
+            cont = input('Would you like to continue? Enter \'y\' or \'n\'  ')
             if cont.lower() == 'y':
+                print('')
                 continue
             elif cont.lower() == 'n':
                 goodbye()
@@ -203,8 +205,9 @@ def terminal_checkbook():
         elif choice == 2:
             # allows a user to record a debit or withdrawal
             debit()
-            cont = input('Would you like to continue? Enter \'y\' or \'n\' \n')
+            cont = input('Would you like to continue? Enter \'y\' or \'n\'  ')
             if cont.lower() == 'y':
+                print('')
                 continue
             elif cont.lower() == 'n':
                 goodbye()
@@ -214,8 +217,9 @@ def terminal_checkbook():
         elif choice == 3:
             # allows a user to record a credit or deposit
             credit()
-            cont = input('Would you like to continue? Enter \'y\' or \'n\' \n')
+            cont = input('Would you like to continue? Enter \'y\' or \'n\'  ')
             if cont.lower() == 'y':
+                print('')
                 continue
             elif cont.lower() == 'n':
                 goodbye()
@@ -224,8 +228,9 @@ def terminal_checkbook():
                 print('Invalid entry. You are being redirected to the home screen. \n')
         elif choice == 4:
             transaction_history()
-            cont = input('Would you like to continue? Enter \'y\' or \'n\' \n')
+            cont = input('Would you like to continue? Enter \'y\' or \'n\'  ')
             if cont.lower() == 'y':
+                print('')
                 continue
             elif cont.lower() == 'n':
                 goodbye()
@@ -247,7 +252,7 @@ dict_base = {
 }
 
 if os.path.exists('checkbook.csv'):
-    print('~~~ Welcome to your terminal checkbook ~~~')
+    print('~~~ Welcome back to your terminal checkbook ~~~')
     terminal_checkbook()
 else: 
     # initial setup
@@ -257,4 +262,5 @@ else:
         writer.writeheader()
         # this inserts the base information into csv file needed for the future functions to operate
         writer.writerow(dict_base)
+    print('~~~ Welcome to your new terminal checkbook ~~~')
     terminal_checkbook()
