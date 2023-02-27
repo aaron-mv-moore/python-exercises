@@ -17,8 +17,7 @@ print(f"I will have to pay ${total_cost} for my rented movies.")
     # Facebook: 350 dollars
 # This week you worked: 10 hours for Facebook, 6 hours for Google and 4 hours for Amazon.
 # How much will you receive in payment for this week?
-
-g_rate = 400
+g_rate = 400        
 a_rate = 380
 f_rate = 350
 g_hours = 6
@@ -38,7 +37,6 @@ class_enrollment_status = students_enrolled / max_enrollment
 print(class_enrollment_status)
 stud_schedule = {'Monday', 'Tuesday', 'Wednesday', 'Friday'}
 class_schedule = {'Thursday'}
-
 class_schedule.intersection(stud_schedule)
 
 if class_enrollment_status < 1 and class_schedule.intersection(stud_schedule) != class_schedule:
@@ -50,6 +48,7 @@ else:
 items_bought = int(input('How many items did you buy? Please enter a whole number.'))
 offer_expired = input('Is the offer expired? Please enter T or F')
 prem_member = input('Are you a premium member? Please enter T or F')
+
 if prem_member.lower() == "f" and items_bought > 2 and offer_expired.lower() == "f":
     print('Offer approved')
 elif prem_member.lower() == "t" and offer_expired.lower() == "f":
